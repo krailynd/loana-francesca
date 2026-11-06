@@ -98,6 +98,34 @@
   animation: flotar-suave 4s ease-in-out infinite;
 }
 
+@keyframes sobre-abrir {
+  0% {
+    transform: scale(0.92) translateY(16px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes brillo-dorado {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(212, 160, 23, 0.35), 0 0 24px rgba(192, 57, 43, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(212, 160, 23, 0.65), 0 0 38px rgba(192, 57, 43, 0.45);
+  }
+}
+
+.anim-sobre-abrir {
+  animation: sobre-abrir 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.anim-brillo-dorado {
+  animation: brillo-dorado 3s ease-in-out infinite;
+}
+
 /* Microinteracciones globales en botones y enlaces interactivos */
 .btn-romantico {
   min-height: 44px;
@@ -186,7 +214,9 @@
   
   .anim-latido,
   .anim-rosa-apertura,
-  .anim-flotar {
+  .anim-flotar,
+  .anim-sobre-abrir,
+  .anim-brillo-dorado {
     animation: none !important;
   }
 

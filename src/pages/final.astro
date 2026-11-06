@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import RosaSVG from '../components/RosaSVG.astro';
 import { Capsulas } from '../components/Capsulas.tsx';
+import CartaSecreta from '../components/CartaSecreta.tsx';
 import { pareja } from '../data/datos.ts';
 
 const nombreElla = pareja.para && pareja.para !== 'POR_COMPLETAR' ? pareja.para : 'Ti';
@@ -54,6 +55,11 @@ const nombreElla = pareja.para && pareja.para !== 'POR_COMPLETAR' ? pareja.para 
     {/* SECCIÓN DE CÁPSULAS DEL TIEMPO */}
     <section class="w-full my-8">
       <Capsulas client:load />
+    </section>
+
+    {/* SECCIÓN DE CARTA SECRETA */}
+    <section class="w-full my-4">
+      <CartaSecreta client:load />
     </section>
 
     {/* BOTONES DE NAVEGACIÓN FINAL */}
