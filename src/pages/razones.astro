@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import RosaSVG from '../components/RosaSVG.astro';
+import { RazonesGrid } from '../components/RazonesGrid.tsx';
+import { pareja } from '../data/datos.ts';
+
+const nombreElla = pareja.para && pareja.para !== 'POR_COMPLETAR' ? pareja.para : 'Ti';
+---
+
+<Base
+  titulo={`12 Razones por las que te quiero ❤ Para ${nombreElla}`}
+  descripcion="Doce motivos especiales que hacen que cada día a tu lado sea inolvidable."
+>
+  <div class="py-4 text-center max-w-2xl mx-auto">
+    <div class="inline-flex items-center justify-center p-2 rounded-full bg-[var(--rosa-palido)] mb-3">
+      <RosaSVG variante="boton" color="rojo" size={24} />
+    </div>
+    <span class="text-xs uppercase tracking-widest text-[var(--granate)] font-bold block mb-1">
+      Detalles que Enamoran
+    </span>
+    <h1 class="text-3xl md:text-4xl font-serif-titulos font-bold text-[var(--granate)]">
+      12 Razones por las que te quiero
+    </h1>
+    <p class="text-xs md:text-sm text-stone-600 mt-2 mb-8 max-w-md mx-auto">
+      Toca cada tarjeta para voltearla y descubrir un motivo sincero. Tu progreso se guarda automáticamente en tu navegador.
+    </p>
+
+    <!-- Rejilla interactiva 3D con flip y persistencia -->
+    <RazonesGrid client:load />
+
+    <!-- Nota amorosa al pie -->
+    <div class="mt-12 text-center">
+      <p class="font-manuscrita text-2xl text-[var(--rojo)]">
+        «Y cada día encuentro una razón más»
+      </p>
+    </div>
+  </div>
+</Base>

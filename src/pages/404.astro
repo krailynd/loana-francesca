@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import RosaSVG from '../components/RosaSVG.astro';
+---
+
+<Base
+  titulo="Te perdiste en el camino ❤ Para Ti"
+  descripcion="Página no encontrada, pero el camino siempre lleva de vuelta a nosotros."
+>
+  <div class="py-16 text-center max-w-md mx-auto flex flex-col items-center">
+    <div class="mb-4">
+      <RosaSVG variante="boton" color="rojo" size={60} />
+    </div>
+
+    <span class="text-xs uppercase tracking-widest text-[var(--granate)] font-bold px-3 py-1 bg-[var(--rosa-palido)] rounded-full mb-3 inline-block">
+      Página No Encontrada
+    </span>
+
+    <h1 class="text-3xl font-serif-titulos font-bold text-[var(--granate)] mb-3">
+      Te perdiste un poquito en el camino
+    </h1>
+
+    <p class="text-sm text-stone-600 leading-relaxed mb-8">
+      No te preocupes, en este rincón no hay caminos equivocados: todos los senderos te llevan de vuelta a nosotros.
+    </p>
+
+    <a
+      href="/"
+      class="btn-romantico px-7 py-3 bg-[var(--granate)] hover:bg-[var(--rojo)] text-[var(--papel)] rounded-full text-sm font-semibold shadow-md flex items-center gap-2"
+    >
+      <span>🌹</span>
+      <span>Regresar a nuestro rincón</span>
+    </a>
+  </div>
+</Base>

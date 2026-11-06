@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import RosaSVG from '../components/RosaSVG.astro';
+import { playlist, pareja } from '../data/datos.ts';
+
+const nombreElla = pareja.para && pareja.para !== 'POR_COMPLETAR' ? pareja.para : 'Ti';
+const enlaceValido = playlist.enlace && !playlist.enlace.startsWith('POR_COMPLETAR') ? playlist.enlace : null;
+---
+
+<Base
+  titulo={`Canciones que me recuerdan a ti ❤ Para ${nombreElla}`}
+  descripcion="La banda sonora de nuestros momentos y los temas que llevo en el corazón."
+>
+  <div class="py-4 text-center max-w-2xl mx-auto">
+    <div class="inline-flex items-center justify-center p-2 rounded-full bg-[var(--rosa-palido)] mb-3">
+      <RosaSVG variante="boton" color="rojo" size={24} />
+    </div>
+    <span class="text-xs uppercase tracking-widest text-[var(--granate)] font-bold block mb-1">
+      Banda Sonora
+    </span>
+    <h1 class="text-3xl md:text-4xl font-serif-titulos font-bold text-[var(--granate)]">
+      Canciones para {nombreElla}
+    </h1>
+    <p class="text-xs md:text-sm text-stone-600 mt-2 mb-6 max-w-md mx-auto">
+      Hay canciones que no puedo escuchar sin sonreír y pensar en ti. Aquí te dejo las más especiales.
+    </p>
+
+    {/* Botón de enlace a Spotify / YouTube si está configurado */}
+    {enlaceValido && (
+      <div class="mb-8">
+        <a
+          href={enlaceValido}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-romantico inline-flex items-center gap-2 px-6 py-2.5 bg-[#1DB954] hover:bg-[#1aa34a] text-white rounded-full text-xs font-bold shadow-md transform hover:scale-105"
+        >
+          <span>🎵</span>
+          <span>Escuchar playlist completa en Spotify</span>
+          <span>↗</span>
+        </a>
+      </div>
+    )}
+
+    {/* LISTA DE CANCIONES */}
+    <div class="space-y-4 text-left">
+      {playlist.canciones.map((c, idx) => (
+        <div class="tarjeta-romantica p-5 border border-[var(--rosa-palido)] hover:border-[var(--rosa)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all">
+          <div class="flex items-center gap-4">
+            {/* Ícono de vinilo decorativo */}
+            <div class="w-12 h-12 rounded-full bg-stone-900 border-2 border-[var(--dorado)] flex items-center justify-center shrink-0 shadow-sm relative">
+              <div class="w-4 h-4 rounded-full bg-[var(--crema)] border border-stone-800" />
+              <span class="absolute text-[10px] text-stone-400 font-mono">
+                {idx + 1}
+              </span>
+            </div>
+
+            <div>
+              <h3 class="font-serif-titulos font-bold text-lg text-[var(--granate)] leading-tight">
+                {c.titulo}
+              </h3>
+              <p class="text-xs text-stone-500 font-medium mt-0.5">
+                {c.artista}
+              </p>
+            </div>
+          </div>
+
+          <div class="sm:text-right max-w-xs bg-[var(--crema)] p-3 rounded-xl border border-[var(--rosa-palido)] w-full sm:w-auto">
+            <span className="text-[10px] uppercase tracking-wider text-stone-400 font-semibold block mb-0.5">
+              Por qué la elegí:
+            </span>
+            <p class="text-xs text-stone-700 italic font-serif-titulos leading-relaxed">
+              «{c.nota}»
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Cita musical final */}
+    <div class="mt-12 text-center">
+      <p class="font-manuscrita text-2xl text-[var(--rojo)]">
+        «Y cada canción contigo suena mejor»
+      </p>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import { CartaSobre } from '../components/CartaSobre.tsx';
+import RosaSVG from '../components/RosaSVG.astro';
+import { pareja } from '../data/datos.ts';
+
+const nombreElla = pareja.para && pareja.para !== 'POR_COMPLETAR' ? pareja.para : 'Ti';
+---
+
+<Base
+  titulo={`Carta para ${nombreElla} ❤ Para Ti`}
+  descripcion="Una carta sincera guardada en un sobre especial."
+>
+  <div class="py-4 text-center max-w-xl mx-auto">
+    <div class="inline-flex items-center justify-center p-2 rounded-full bg-[var(--rosa-palido)] mb-3">
+      <RosaSVG variante="boton" color="rojo" size={24} />
+    </div>
+    <span class="text-xs uppercase tracking-widest text-[var(--granate)] font-bold block mb-1">
+      Correspondencia Privada
+    </span>
+    <h1 class="text-3xl md:text-4xl font-serif-titulos font-bold text-[var(--granate)]">
+      Una Carta para {nombreElla}
+    </h1>
+    <p class="text-xs md:text-sm text-stone-600 mt-2 mb-8 max-w-md mx-auto">
+      Toca el sello de cera en el centro del sobre para abrir la carta y leer lo que guardo para ti.
+    </p>
+
+    <!-- Sobre interactivo React island -->
+    <CartaSobre client:load />
+
+    <!-- Nota inferior de apoyo -->
+    <div class="mt-12 p-4 bg-[var(--papel)] rounded-2xl border border-[var(--rosa-palido)] max-w-md mx-auto text-xs text-stone-500 text-center no-print">
+      <p class="font-serif-titulos text-stone-700 font-semibold mb-1">
+        ¿Quieres guardarla en papel?
+      </p>
+      <p>
+        Puedes pulsar el botón «Imprimir esta carta» al desplegarla para tener una versión limpia en hoja A4.
+      </p>
+    </div>
+  </div>
+</Base>

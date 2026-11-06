@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import RosaSVG from '../components/RosaSVG.astro';
+import { Sobres as SobresComponente } from '../components/Sobres.tsx';
+import { pareja } from '../data/datos.ts';
+
+const nombreElla = pareja.para && pareja.para !== 'POR_COMPLETAR' ? pareja.para : 'Ti';
+---
+
+<Base
+  titulo={`Sobres «Abre esto cuando…» ❤ Para ${nombreElla}`}
+  descripcion="Mensajes especiales guardados para los momentos en que más los necesites."
+>
+  <div class="py-4 text-center max-w-2xl mx-auto">
+    <div class="inline-flex items-center justify-center p-2 rounded-full bg-[var(--rosa-palido)] mb-3">
+      <RosaSVG variante="boton" color="rojo" size={24} />
+    </div>
+    <span class="text-xs uppercase tracking-widest text-[var(--granate)] font-bold block mb-1">
+      Cartas para Momentos Clave
+    </span>
+    <h1 class="text-3xl md:text-4xl font-serif-titulos font-bold text-[var(--granate)]">
+      Abre esto cuando…
+    </h1>
+    <p class="text-xs md:text-sm text-stone-600 mt-2 mb-8 max-w-md mx-auto">
+      Cada sobre contiene un abrazo en palabras para diferentes estados de ánimo. Ábrelos solo cuando sientas que llegó su momento.
+    </p>
+
+    <!-- Componente de sobres -->
+    <SobresComponente client:load />
+
+    <div class="mt-12 text-center">
+      <p class="font-manuscrita text-2xl text-[var(--rojo)]">
+        «Siempre estaré para ti, en los días soleados y en los nublados»
+      </p>
+    </div>
+  </div>
+</Base>

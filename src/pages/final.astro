@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import RosaSVG from '../components/RosaSVG.astro';
+import { Capsulas } from '../components/Capsulas.tsx';
+import { pareja } from '../data/datos.ts';
+
+const nombreElla = pareja.para && pareja.para !== 'POR_COMPLETAR' ? pareja.para : 'Ti';
+---
+
+<Base
+  titulo={`Una Promesa Final ❤ Para ${nombreElla}`}
+  descripcion="El cierre de esta experiencia digital, con rosas, cápsulas del tiempo y una promesa sincera."
+>
+  <div class="py-6 text-center max-w-2xl mx-auto flex flex-col items-center">
+    {/* Rosa floreciente animada como centro visual */}
+    <div class="mb-6 transform hover:scale-105 transition-transform duration-700">
+      <RosaSVG variante="abierta" color="rojo" tallo={true} size={120} animada={true} />
+    </div>
+
+    <span class="text-xs uppercase tracking-widest text-[var(--granate)] font-bold px-3 py-1 bg-[var(--rosa-palido)] rounded-full mb-3 inline-block">
+      Nuestra Promesa
+    </span>
+
+    <h1 class="text-3xl md:text-5xl font-serif-titulos font-bold text-[var(--granate)] leading-tight">
+      Gracias por Ser Mi Persona Favorita
+    </h1>
+
+    <p class="font-manuscrita text-3xl md:text-4xl text-[var(--rojo)] mt-2 mb-6">
+      «Hoy, mañana y en cada uno de nuestros viernes»
+    </p>
+
+    <div class="tarjeta-romantica textura-papel p-8 md:p-10 border border-[var(--rosa)] my-6 text-left space-y-4 text-base md:text-lg leading-relaxed text-[var(--tinta)]">
+      <p class="indent-4 text-justify">
+        Si llegaste hasta aquí, espero que hayas sentido en cada rincón el cariño inmenso con el que preparé este detalle. Ningún algoritmo ni línea de código puede medir lo que significas para mí, pero este espacio es una forma de decirte que valoro todo lo que somos.
+      </p>
+      <p class="indent-4 text-justify">
+        Te elijo en los días fáciles y en los difíciles. Te elijo para reírnos caminando por la Plaza de Armas, para planear viajes locos o simplemente para ver caer el atardecer en Huacachina en silencio, sabiendo que estamos juntos.
+      </p>
+      <p class="indent-4 text-justify">
+        Esta página se queda aquí guardada para siempre. Siempre que quieras volver a leer tus cartas, canjear un vale o recordar por qué te quiero, aquí estaré.
+      </p>
+
+      <div class="pt-6 border-t border-[var(--rosa-palido)] text-right">
+        <p class="font-manuscrita text-3xl md:text-4xl text-[var(--rojo)]">
+          {pareja.firma && pareja.firma !== 'POR_COMPLETAR'
+            ? pareja.firma
+            : pareja.de && pareja.de !== 'POR_COMPLETAR'
+            ? `— ${pareja.de}`
+            : '— Por siempre tuyo'}
+        </p>
+      </div>
+    </div>
+
+    {/* SECCIÓN DE CÁPSULAS DEL TIEMPO */}
+    <section class="w-full my-8">
+      <Capsulas client:load />
+    </section>
+
+    {/* BOTONES DE NAVEGACIÓN FINAL */}
+    <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center items-center no-print">
+      <a
+        href="/"
+        class="btn-romantico px-6 py-2.5 rounded-full text-xs font-semibold bg-[var(--crema)] text-[var(--granate)] border border-[var(--rosa)] hover:bg-[var(--rosa-palido)]"
+      >
+        ← Volver al inicio
+      </a>
+      <a
+        href="/carta"
+        class="btn-romantico px-6 py-2.5 rounded-full text-xs font-semibold bg-[var(--granate)] text-[var(--papel)] hover:bg-[var(--rojo)] shadow-sm"
+      >
+        Releer la carta principal 💌
+      </a>
+    </div>
+  </div>
+</Base>

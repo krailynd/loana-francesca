@@ -1,0 +1,252 @@
+---
+import Base from '../layouts/Base.astro';
+import RosaSVG from '../components/RosaSVG.astro';
+import { Contador } from '../components/Contador.tsx';
+import { pareja } from '../data/datos.ts';
+
+const nombreElla = pareja.para && pareja.para !== 'POR_COMPLETAR' ? pareja.para : 'Ti';
+const apodo = pareja.apodoPara && pareja.apodoPara !== 'POR_COMPLETAR' ? ` (${pareja.apodoPara})` : '';
+---
+
+<Base titulo={`Para Ti, ${nombreElla} ❤ Nuestro Rincón`}>
+  {/* HERO PRINCIPAL */}
+  <section class="text-center py-6 md:py-12 flex flex-col items-center">
+    <div class="mb-4 transform hover:scale-105 transition-transform duration-500">
+      <RosaSVG variante="abierta" color="rojo" tallo={true} size={90} animada={true} />
+    </div>
+
+    <span class="text-xs uppercase tracking-widest text-[var(--granate)] font-bold px-3 py-1 bg-[var(--rosa-palido)] rounded-full mb-3 inline-block">
+      Un detalle hecho con el corazón
+    </span>
+
+    <h1 class="text-4xl md:text-6xl font-serif-titulos font-bold text-[var(--granate)] leading-tight max-w-xl">
+      Para {nombreElla}{apodo}
+    </h1>
+
+    <p class="font-manuscrita text-2xl md:text-3xl text-[var(--rojo)] mt-1 mb-4">
+      «Porque cada instante a tu lado merece ser recordado»
+    </p>
+
+    <p class="text-stone-600 text-sm md:text-base max-w-md mx-auto leading-relaxed mb-8">
+      Construí este pequeño espacio digital para nosotros. Aquí encontrarás cartas, juegos para nuestras citas de viernes, vales para canjear cuando quieras y razones que me hacen elegirte cada día.
+    </p>
+
+    <!-- Botón CTA principal a la carta -->
+    <a
+      href="/carta"
+      class="btn-romantico px-8 py-3.5 bg-[var(--granate)] hover:bg-[var(--rojo)] text-[var(--papel)] rounded-full font-serif-titulos text-lg font-bold shadow-lg flex items-center gap-2 transform hover:-translate-y-0.5"
+    >
+      <span>💌</span>
+      <span>Abrir la carta principal</span>
+      <span>→</span>
+    </a>
+  </section>
+
+  {/* SECCIÓN DEL CONTADOR Y PRÓXIMA CITA */}
+  <section class="py-6 my-4">
+    <Contador client:load variante="completo" />
+  </section>
+
+  {/* SECCIÓN DE EXPERIENCIAS / ACCESOS DIRECTOS */}
+  <section class="py-8">
+    <div class="text-center mb-8">
+      <span class="text-xs uppercase tracking-widest text-[var(--granate)] font-bold block mb-1">
+        Descubre cada rincón
+      </span>
+      <h2 class="text-2xl md:text-3xl font-serif-titulos font-bold text-[var(--tinta)]">
+        ¿Qué te gustaría ver hoy?
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- 1. Carta -->
+      <a
+        href="/carta"
+        class="tarjeta-romantica p-6 border border-[var(--rosa-palido)] hover:border-[var(--rosa)] flex flex-col justify-between group transition-all"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-[var(--rosa-palido)] text-[var(--granate)] flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            💌
+          </div>
+          <h3 class="font-serif-titulos text-xl font-bold text-[var(--granate)] mb-1">
+            Carta desde el corazón
+          </h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Un sobre interactivo con mis palabras más sinceras para ti, listo para leer y atesorar.
+          </p>
+        </div>
+        <span class="text-xs font-semibold text-[var(--rojo)] mt-4 inline-flex items-center gap-1">
+          Abrir carta →
+        </span>
+      </a>
+
+      <!-- 2. Juegos & Preguntas -->
+      <a
+        href="/juegos"
+        class="tarjeta-romantica p-6 border border-[var(--rosa-palido)] hover:border-[var(--rosa)] flex flex-col justify-between group transition-all"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            🎲
+          </div>
+          <h3 class="font-serif-titulos text-xl font-bold text-[var(--granate)] mb-1">
+            Juegos para nuestra cita
+          </h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Preguntas del día, quiz de complicidad, ruleta de planes en Ica y dos verdades y una mentira.
+          </p>
+        </div>
+        <span class="text-xs font-semibold text-[var(--rojo)] mt-4 inline-flex items-center gap-1">
+          Jugar juntos →
+        </span>
+      </a>
+
+      <!-- 3. 12 Razones -->
+      <a
+        href="/razones"
+        class="tarjeta-romantica p-6 border border-[var(--rosa-palido)] hover:border-[var(--rosa)] flex flex-col justify-between group transition-all"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-800 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            🌹
+          </div>
+          <h3 class="font-serif-titulos text-xl font-bold text-[var(--granate)] mb-1">
+            12 Razones para quererte
+          </h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Tarjetas interactivas con motivos especiales que hacen que cada día contigo sea único.
+          </p>
+        </div>
+        <span class="text-xs font-semibold text-[var(--rojo)] mt-4 inline-flex items-center gap-1">
+          Descubrir razones →
+        </span>
+      </a>
+
+      <!-- 4. Vales Canjeables -->
+      <a
+        href="/vales"
+        class="tarjeta-romantica p-6 border border-[var(--rosa-palido)] hover:border-[var(--rosa)] flex flex-col justify-between group transition-all"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            🎟️
+          </div>
+          <h3 class="font-serif-titulos text-xl font-bold text-[var(--granate)] mb-1">
+            Vales de amor canjeables
+          </h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            8 cupones especiales para pedir masajes, abrazos largos, salidas sorpresa o escuchar sin juzgar.
+          </p>
+        </div>
+        <span class="text-xs font-semibold text-[var(--rojo)] mt-4 inline-flex items-center gap-1">
+          Ver talonario →
+        </span>
+      </a>
+
+      <!-- 5. Sobres cuando... -->
+      <a
+        href="/sobres"
+        class="tarjeta-romantica p-6 border border-[var(--rosa-palido)] hover:border-[var(--rosa)] flex flex-col justify-between group transition-all"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-800 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            ✉️
+          </div>
+          <h3 class="font-serif-titulos text-xl font-bold text-[var(--granate)] mb-1">
+            Abre esto cuando…
+          </h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Mensajes especiales para cuando estés triste, no puedas dormir, peleemos o me extrañes.
+          </p>
+        </div>
+        <span class="text-xs font-semibold text-[var(--rojo)] mt-4 inline-flex items-center gap-1">
+          Elegir un sobre →
+        </span>
+      </a>
+
+      <!-- 6. Historia & Lugares -->
+      <a
+        href="/historia"
+        class="tarjeta-romantica p-6 border border-[var(--rosa-palido)] hover:border-[var(--rosa)] flex flex-col justify-between group transition-all"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-800 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            🗺️
+          </div>
+          <h3 class="font-serif-titulos text-xl font-bold text-[var(--granate)] mb-1">
+            Nuestra historia & mapa
+          </h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Nuestros hitos, lugares que amamos en Ica y el álbum de fotos de nuestros momentos.
+          </p>
+        </div>
+        <span class="text-xs font-semibold text-[var(--rojo)] mt-4 inline-flex items-center gap-1">
+          Recorrer historia →
+        </span>
+      </a>
+
+      <!-- 7. Canciones -->
+      <a
+        href="/playlist"
+        class="tarjeta-romantica p-6 border border-[var(--rosa-palido)] hover:border-[var(--rosa)] flex flex-col justify-between group transition-all"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-pink-100 text-pink-800 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            🎵
+          </div>
+          <h3 class="font-serif-titulos text-xl font-bold text-[var(--granate)] mb-1">
+            Nuestra Playlist
+          </h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Las canciones que suenan cuando pienso en ti, con pequeñas notas de por qué las elegí.
+          </p>
+        </div>
+        <span class="text-xs font-semibold text-[var(--rojo)] mt-4 inline-flex items-center gap-1">
+          Escuchar canciones →
+        </span>
+      </a>
+
+      <!-- 8. Tarjetas QR para imprimir -->
+      <a
+        href="/tarjetas-qr"
+        class="tarjeta-romantica p-6 border border-[var(--rosa-palido)] hover:border-[var(--rosa)] flex flex-col justify-between group transition-all"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-stone-100 text-stone-800 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            🖨️
+          </div>
+          <h3 class="font-serif-titulos text-xl font-bold text-[var(--granate)] mb-1">
+            Tarjetas QR Imprimibles
+          </h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            6 tarjetitas en formato A4 con mensajes offline para regalar en físico con una flor o chocolate.
+          </p>
+        </div>
+        <span class="text-xs font-semibold text-[var(--rojo)] mt-4 inline-flex items-center gap-1">
+          Ver tarjetas →
+        </span>
+      </a>
+
+      <!-- 9. Cierre -->
+      <a
+        href="/final"
+        class="tarjeta-romantica p-6 border border-[var(--rosa-palido)] hover:border-[var(--rosa)] flex flex-col justify-between group transition-all"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-red-100 text-[var(--rojo)] flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+            👑
+          </div>
+          <h3 class="font-serif-titulos text-xl font-bold text-[var(--granate)] mb-1">
+            Una promesa final
+          </h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            La flor que florece en tu honor, cápsulas para el futuro y un mensaje de despedida.
+          </p>
+        </div>
+        <span class="text-xs font-semibold text-[var(--rojo)] mt-4 inline-flex items-center gap-1">
+          Ir al final →
+        </span>
+      </a>
+    </div>
+  </section>
+</Base>

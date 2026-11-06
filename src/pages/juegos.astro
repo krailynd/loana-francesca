@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import RosaSVG from '../components/RosaSVG.astro';
+import { PreguntaDelDia } from '../components/PreguntaDelDia.tsx';
+import { Quiz } from '../components/Quiz.tsx';
+import { DosVerdades } from '../components/DosVerdades.tsx';
+import { RuletaPlanes } from '../components/RuletaPlanes.tsx';
+import { pareja } from '../data/datos.ts';
+
+const nombreElla = pareja.para && pareja.para !== 'POR_COMPLETAR' ? pareja.para : 'Ti';
+---
+
+<Base
+  titulo={`Juegos para Nuestra Cita ❤ Para ${nombreElla}`}
+  descripcion="Preguntas profundas, ruleta de planes en Ica, quiz de pareja y dos verdades y una mentira."
+>
+  <div class="py-4 text-center max-w-2xl mx-auto">
+    <div class="inline-flex items-center justify-center p-2 rounded-full bg-[var(--rosa-palido)] mb-3">
+      <RosaSVG variante="boton" color="rojo" size={24} />
+    </div>
+    <span class="text-xs uppercase tracking-widest text-[var(--granate)] font-bold block mb-1">
+      Momento de Conexión
+    </span>
+    <h1 class="text-3xl md:text-4xl font-serif-titulos font-bold text-[var(--granate)]">
+      Juegos para Nuestro Viernes
+    </h1>
+    <p class="text-xs md:text-sm text-stone-600 mt-2 mb-8 max-w-md mx-auto">
+      Sin prisas ni pantallas distractoras: 4 dinámicas pensadas para conocernos más, reírnos y disfrutar nuestro tiempo juntos.
+    </p>
+
+    {/* BOTONES SELECTORES DE JUEGO (TABS) */}
+    <div class="flex justify-center flex-wrap gap-2 mb-8 no-print">
+      <button
+        id="tab-btn-preguntas"
+        type="button"
+        onclick="cambiarJuego('preguntas')"
+        class="tab-juego-btn active px-4 py-2 rounded-full text-xs font-bold transition-all bg-[var(--granate)] text-white shadow-sm flex items-center gap-1.5"
+      >
+        <span>💬</span>
+        <span>Preguntas del día</span>
+      </button>
+
+      <button
+        id="tab-btn-ruleta"
+        type="button"
+        onclick="cambiarJuego('ruleta')"
+        class="tab-juego-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-[var(--papel)] text-[var(--tinta)] border border-[var(--rosa-palido)] hover:bg-[var(--rosa-palido)] flex items-center gap-1.5"
+      >
+        <span>🎲</span>
+        <span>Ruleta de planes</span>
+      </button>
+
+      <button
+        id="tab-btn-quiz"
+        type="button"
+        onclick="cambiarJuego('quiz')"
+        class="tab-juego-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-[var(--papel)] text-[var(--tinta)] border border-[var(--rosa-palido)] hover:bg-[var(--rosa-palido)] flex items-center gap-1.5"
+      >
+        <span>✨</span>
+        <span>Quiz de pareja</span>
+      </button>
+
+      <button
+        id="tab-btn-verdades"
+        type="button"
+        onclick="cambiarJuego('verdades')"
+        class="tab-juego-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-[var(--papel)] text-[var(--tinta)] border border-[var(--rosa-palido)] hover:bg-[var(--rosa-palido)] flex items-center gap-1.5"
+      >
+        <span>🕵️</span>
+        <span>Dos verdades</span>
+      </button>
+    </div>
+
+    {/* CONTENEDORES DE JUEGOS */}
+    <div id="seccion-preguntas" class="seccion-juego animate-fadeIn">
+      <PreguntaDelDia client:load />
+    </div>
+
+    <div id="seccion-ruleta" class="seccion-juego hidden animate-fadeIn">
+      <RuletaPlanes client:load />
+    </div>
+
+    <div id="seccion-quiz" class="seccion-juego hidden animate-fadeIn">
+      <Quiz client:load />
+    </div>
+
+    <div id="seccion-verdades" class="seccion-juego hidden animate-fadeIn">
+      <DosVerdades client:load />
+    </div>
+  </div>
+
+  <script is:inline>
+    function cambiarJuego(tipo) {
+      const secciones = ['preguntas', 'ruleta', 'quiz', 'verdades'];
+      secciones.forEach((s) => {
+        const el = document.getElementById(`seccion-${s}`);
+        const btn = document.getElementById(`tab-btn-${s}`);
+        if (s === tipo) {
+          el?.classList.remove('hidden');
+          btn?.classList.remove('bg-[var(--papel)]', 'text-[var(--tinta)]', 'border');
+          btn?.classList.add('bg-[var(--granate)]', 'text-white', 'shadow-sm');
+        } else {
+          el?.classList.add('hidden');
+          btn?.classList.add('bg-[var(--papel)]', 'text-[var(--tinta)]', 'border');
+          btn?.classList.remove('bg-[var(--granate)]', 'text-white', 'shadow-sm');
+        }
+      });
+    }
+  </script>
+</Base>

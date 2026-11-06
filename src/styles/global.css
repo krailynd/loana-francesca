@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+:root {
+  --rojo: #C0392B;
+  --granate: #7B1E26;
+  --vino: #5C1620;
+  --rosa: #E8A0A8;
+  --rosa-palido: #F7D6DA;
+  --crema: #FDF6EC;
+  --papel: #FFFDF8;
+  --dorado: #D4A017;
+  --tinta: #3B2F2F;
+  --sombra-romantica: 0 4px 18px rgba(123, 30, 38, 0.08);
+  --sombra-elevada: 0 8px 30px rgba(123, 30, 38, 0.14);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--crema);
+    color: var(--tinta);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--crema);
+    background-image: radial-gradient(rgba(232, 160, 168, 0.15) 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: var(--tinta);
+  }
+
+  /* Tipografías especiales */
+  .font-serif-titulos {
+    font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+  }
+
+  .font-manuscrita {
+    font-family: 'Dancing Script', 'Brush Script MT', cursive;
+  }
+}
+
+/* Animaciones fundamentales */
+@keyframes latido {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes abrir-rosa {
+  0% {
+    transform: scale(0.65) rotate(-20deg);
+    opacity: 0.3;
+  }
+  60% {
+    transform: scale(1.05) rotate(4deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flotar-suave {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulso-dorado {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(212, 160, 23, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(212, 160, 23, 0);
+  }
+}
+
+.anim-latido {
+  animation: latido 1.8s infinite ease-in-out;
+}
+
+.anim-rosa-apertura {
+  animation: abrir-rosa 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.anim-flotar {
+  animation: flotar-suave 4s ease-in-out infinite;
+}
+
+/* Microinteracciones globales en botones y enlaces interactivos */
+.btn-romantico {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+  user-select: none;
+}
+
+.btn-romantico:hover {
+  transform: scale(1.02);
+}
+
+.btn-romantico:active {
+  transform: scale(0.97);
+}
+
+.tarjeta-romantica {
+  background-color: var(--papel);
+  border-radius: 18px;
+  box-shadow: var(--sombra-romantica);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tarjeta-romantica:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-elevada);
+}
+
+/* Textura sutil de papel */
+.textura-papel {
+  background-color: var(--papel);
+  background-image: 
+    linear-gradient(90deg, rgba(123, 30, 38, 0.02) 1px, transparent 0),
+    linear-gradient(rgba(123, 30, 38, 0.02) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* Sistema de reveal al hacer scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Borde punteado dorado para vales y cupones */
+.borde-cupon-dorado {
+  border: 2px dashed var(--dorado);
+  background: var(--papel);
+  position: relative;
+}
+
+/* Sello CANJEADO */
+.sello-canjeado {
+  border: 3px solid var(--rojo);
+  color: var(--rojo);
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 6px;
+  transform: rotate(-12deg);
+  display: inline-block;
+  opacity: 0.85;
+}
+
+/* Reglas estrictas de accesibilidad y movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .anim-latido,
+  .anim-rosa-apertura,
+  .anim-flotar {
+    animation: none !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Modo de impresión limpio y optimizado para formato A4 */
+@media print {
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    background-image: none !important;
+    font-size: 11pt !important;
+  }
+
+  .no-print,
+  nav,
+  header,
+  footer,
+  .nav-movil-fija,
+  .petalos-canvas-layer {
+    display: none !important;
+  }
+
+  .solo-print {
+    display: block !important;
+  }
+
+  .tarjeta-romantica,
+  .borde-cupon-dorado {
+    box-shadow: none !important;
+    border-color: #888 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Ajuste de grilla de tarjetas QR para encajar 6 en 1 sola hoja A4 */
+  .hoja-imprimible {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .tarjeta-qr-fisica {
+    box-shadow: none !important;
+    border: 1.5px dashed #444 !important;
+    padding: 12px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .tarjeta-qr-fisica img {
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+  @page {
+    margin: 1cm;
+    size: A4 portrait;
+  }
+}

@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import RosaSVG from '../components/RosaSVG.astro';
+import { MapaLugares } from '../components/MapaLugares.tsx';
+import { GaleriaFotos } from '../components/GaleriaFotos.tsx';
+import { hitos, pareja } from '../data/datos.ts';
+
+const nombreElla = pareja.para && pareja.para !== 'POR_COMPLETAR' ? pareja.para : 'Ti';
+
+// Filtrar hitos reales si el usuario los llenó, o mostrar los hitos semilla
+const hitosValidos = hitos.filter(
+  (h) => h.titulo && !h.titulo.startsWith('POR_COMPLETAR')
+);
+---
+
+<Base
+  titulo={`Nuestra Historia & Lugares ❤ Para ${nombreElla}`}
+  descripcion="Línea de tiempo de nuestros hitos, mapa de citas en Ica y álbum de fotos."
+>
+  <div class="py-4 text-center max-w-3xl mx-auto">
+    <div class="inline-flex items-center justify-center p-2 rounded-full bg-[var(--rosa-palido)] mb-3">
+      <RosaSVG variante="boton" color="rojo" size={24} />
+    </div>
+    <span class="text-xs uppercase tracking-widest text-[var(--granate)] font-bold block mb-1">
+      Memoria Compartida
+    </span>
+    <h1 class="text-3xl md:text-4xl font-serif-titulos font-bold text-[var(--granate)]">
+      Nuestra Historia Juntos
+    </h1>
+    <p class="text-xs md:text-sm text-stone-600 mt-2 mb-12 max-w-md mx-auto">
+      Los pasos que hemos dado, los rincones de {pareja.ciudad || 'Ica'} que guardan nuestras risas y las fotos que atesoramos.
+    </p>
+
+    {/* SECCIÓN 1: LÍNEA DE TIEMPO DE HITOS */}
+    <section class="mb-16 text-left">
+      <div class="text-center mb-8">
+        <span class="text-xs uppercase tracking-widest text-[var(--granate)] font-bold block">
+          Línea del Tiempo
+        </span>
+        <h2 class="text-2xl font-serif-titulos font-bold text-[var(--tinta)]">
+          Momentos que Marcaron el Camino
+        </h2>
+      </div>
+
+      <div class="relative border-l-2 border-[var(--rosa)] ml-4 md:ml-32 pl-6 md:pl-8 space-y-8">
+        {hitosValidos.map((hito, idx) => (
+          <div class="relative group">
+            {/* Nodo rosa en la línea */}
+            <div class="absolute -left-[31px] md:-left-[39px] top-1 w-5 h-5 rounded-full bg-[var(--papel)] border-2 border-[var(--rojo)] flex items-center justify-center shadow-xs group-hover:scale-125 transition-transform">
+              <div class="w-2 h-2 rounded-full bg-[var(--granate)]" />
+            </div>
+
+            {/* Fecha */}
+            <span class="text-xs font-bold text-[var(--granate)] uppercase tracking-wider block mb-1">
+              {hito.fecha}
+            </span>
+
+            {/* Contenedor del hito */}
+            <div class="tarjeta-romantica p-5 border border-[var(--rosa-palido)] hover:border-[var(--rosa)] transition-all">
+              <h3 class="font-serif-titulos font-bold text-lg text-[var(--tinta)] mb-1">
+                {hito.titulo}
+              </h3>
+              <p class="text-xs md:text-sm text-stone-600 leading-relaxed">
+                {hito.texto}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* SECCIÓN 2: MAPA INTERACTIVO DE ICA */}
+    <section class="mb-16">
+      <MapaLugares client:visible />
+    </section>
+
+    {/* SECCIÓN 3: GALERÍA DE FOTOS POLAROID */}
+    <section class="mb-12">
+      <div class="text-center mb-6">
+        <span class="text-xs uppercase tracking-widest text-[var(--granate)] font-bold block">
+          Álbum Visual
+        </span>
+        <h2 class="text-2xl font-serif-titulos font-bold text-[var(--tinta)]">
+          Nuestras Fotografías
+        </h2>
+      </div>
+      <GaleriaFotos client:visible />
+    </section>
+  </div>
+</Base>
